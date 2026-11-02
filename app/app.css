@@ -128,3 +128,125 @@
     @apply font-sans;
     }
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  color: #080611;
+  background: oklch(0.82 0.12 300);
+}
+
+:focus-visible {
+  outline: 2px solid oklch(0.82 0.12 300);
+  outline-offset: 4px;
+}
+
+.work-artwork {
+  isolation: isolate;
+  background-color: #100c1b;
+}
+
+.work-artwork::before,
+.work-artwork::after {
+  position: absolute;
+  inset: 12%;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 50%;
+  content: "";
+}
+
+.work-artwork::after {
+  inset: 25%;
+  border-style: dashed;
+  opacity: 0.7;
+}
+
+.work-artwork__shape {
+  position: absolute;
+  width: 35%;
+  aspect-ratio: 1;
+  border: 1px solid rgb(255 255 255 / 40%);
+  border-radius: 32%;
+  background: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 25%),
+    rgb(168 85 247 / 12%) 48%,
+    rgb(217 70 239 / 24%)
+  );
+  box-shadow: 0 0 60px rgb(168 85 247 / 20%);
+  backdrop-filter: blur(8px);
+  transform: rotate(35deg);
+  transition:
+    transform 500ms ease,
+    box-shadow 500ms ease;
+}
+
+.work-artwork--one {
+  background-image: radial-gradient(
+    ellipse at 50% 45%,
+    rgb(126 72 183 / 28%),
+    transparent 66%
+  );
+}
+
+.work-artwork--two {
+  background-image: radial-gradient(
+    ellipse at 55% 40%,
+    rgb(65 99 161 / 24%),
+    transparent 68%
+  );
+}
+
+.work-artwork--two .work-artwork__shape {
+  border-radius: 50% 50% 24% 50%;
+  transform: rotate(-35deg) scale(0.9);
+}
+
+.work-artwork--three {
+  background-image: radial-gradient(
+    ellipse at 48% 48%,
+    rgb(178 76 156 / 22%),
+    transparent 68%
+  );
+}
+
+.work-artwork--three .work-artwork__shape {
+  border-radius: 50% 24% 50% 24%;
+  transform: rotate(18deg) scale(1.05);
+}
+
+.group:hover .work-artwork__shape {
+  box-shadow: 0 0 80px rgb(168 85 247 / 32%);
+  transform: rotate(45deg) scale(1.06);
+}
+
+.portfolio-orb {
+  animation: portfolio-orb-float 8s ease-in-out infinite;
+}
+
+@keyframes portfolio-orb-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
